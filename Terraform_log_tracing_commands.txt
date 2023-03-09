@@ -1,3 +1,5 @@
+Set the environment variable and run the below command to see the complete command output
+
 In windows
 
 set TF_LOG=trace
