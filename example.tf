@@ -1,12 +1,11 @@
 provider "aws" {
   region     = "ap-south-1"
-  access_key = "AKIA4MFLODBGANPC4PZ5"
-  secret_key = "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"
 }
 
 resource "aws_instance" "web" {
   ami           = "ami-09ba48996007c8b50"
   instance_type = "t2.micro"
+  key_name = aws_key_pair.terraform-19.key_name
 
   tags = {
     Name = "terraform-19"
@@ -23,6 +22,7 @@ inline = [
 }
 
   depends_on = [aws_ebs_volume.terraform-19]
+  security_groups = ["${aws_security_group.AWSaccess.name}"]
 }
 
 resource "aws_ebs_volume" "terraform-19" {
